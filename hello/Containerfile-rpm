@@ -1,0 +1,15 @@
+FROM registry.access.redhat.com/ubi9/ubi 
+# as builder
+
+#install go
+RUN dnf -y install golang
+
+COPY hello.go .
+COPY go.mod .
+
+# build
+RUN go build
+
+# copy binary to clean image
+#FROM registry.access.redhat.com/ubi9/ubi
+#COPY --from=builder /build/hello /usr/bin/hello

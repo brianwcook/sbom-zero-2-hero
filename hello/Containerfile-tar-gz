@@ -1,0 +1,24 @@
+FROM registry.access.redhat.com/ubi9/ubi as builder
+
+# install go
+COPY go1.22.5* .
+RUN platform=$(uname) && arch=$(uname -m) && \
+if [ "$arch" == "aarch64" ]; then \
+  tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz; \
+elif [ "$arch" == "amd64" ]; then \ 
+  tar -C /usr/local -xzf go1.22.5.linux-amd64.tar.gz; \
+fi && \
+echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.profile
+
+COPY hello.go .
+COPY go.mod .
+
+# build
+RUN export PATH=$PATH:/usr/local/go/bin &&  go build
+
+
+
+
+# copy binary to clean image
+#FROM registry.access.redhat.com/ubi9/ubi
+#COPY --from=builder /build/hello /usr/bin/hello

@@ -1,0 +1,13 @@
+[baseos]
+name=BaseOS
+baseurl=https://odcs.engineering.redhat.com/composes/development/latest-RHEL-9.0.0/compose/BaseOS/$basearch/os/
+enabled=1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+gpgcheck=1
+
+[appstream]
+name=AppStream
+baseurl=https://odcs.engineering.redhat.com/composes/development/latest-RHEL-9.0.0/compose/AppStream/$basearch/os/
+enabled=1
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+gpgcheck=1

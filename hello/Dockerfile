@@ -1,5 +1,4 @@
 FROM quay.io/bcook/nubi:latest as builder
-
 # install go
 RUN dnf -y install golang
 
@@ -11,5 +10,5 @@ RUN go build
 RUN pwd
 
 # copy binary to clean image
-FROM registry.access.redhat.com/ubi9/ubi
+FROM quay.io/bcook/nubi:latest
 COPY --from=builder /hello /usr/bin/hello

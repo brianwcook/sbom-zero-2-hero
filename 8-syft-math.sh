@@ -1,1 +1,2 @@
-jq -n --argfile one 5-sbom.json --argfile two 7-sbom.json -f difference.jq
+#!/bin/bash -v
+python3 spdx-cancel.py  5-sbom.json 7-sbom.json  | jq .
